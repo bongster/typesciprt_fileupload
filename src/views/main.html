@@ -65,9 +65,8 @@
             <label class="notice_label">Upload only two files in APK and JSON formats, max 110MB</label>
             Force update <input type="checkbox" name="force_update">
           </div>
-          <input class="submit_btn" type="submit" value="Upload">
-          <div class="file_list">
-          </div>
+          <div class="file_list"></div>
+          <input class="submit_btn" type="submit" value="Upload" disabled>
         </form>
       </div>
       <div class="right"></div>
@@ -79,11 +78,16 @@
     };
 
     document.querySelector("input[type='file']").onchange = (event) => {
-      console.log(event.target.files);
-
-      event.target.files.forEach(file => {
-        document.querySelector('.file_list').appendChild(file.name)
-      });
+      const files = event.target.files;
+      if (files && files.length == 2) {
+        document.querySelector('.submit_btn').disabled = false;
+      }
+      
+      for (var i = 0; i < files.length; i++) {
+        const div = document.createElement('div');
+        div.innerText = files[i].name;
+        document.querySelector('.file_list').appendChild(div);
+      }
     }
   </script>
 </html>
