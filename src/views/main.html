@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .flex-container {
+        display: flex;
+        justify-content: center;
+      }
+      .left {
+        flex-grow: 3;
+      }
+      .center {
+        flex-grow: 6;
+      }
+      .right {
+        flex-grow: 3;
+      }
+      .file_box {
+        width: 100%;
+        height: 200px;
+        background-color: #F0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .submit_btn {
+        width: 100%;
+        height: 30px;
+      }
+      .notice {
+        display: flex;
+      }
+      .notice_label {
+        flex-grow: 2;
+      }
+      .file_box_img {
+        text-align: center;
+      }
+      .title {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="left"></div>
+      <div class="center">
+        <h1 class="title"> Upload Files</h1>
+        <div class="file_box">
+          <div class="file_box_img">
+            File image
+            <div>
+              Drag and drop files here or browse
+              <a href="javascript:OpenFileInput()">browser</a>
+            </div>
+          </div>
+        </div>
+        <form encType="multipart/form-data" action="/upload" method="POST">
+          <input type="file" name="file" accept=".apk,.json" multiple> <br />
+          <div class="notice">
+            <label class="notice_label">Upload only two files in APK and JSON formats, max 110MB</label>
+            Force update <input type="checkbox" name="force_update">
+          </div>
+          <input class="submit_btn" type="submit" value="Upload">
+          <div class="file_list">
+          </div>
+        </form>
+      </div>
+      <div class="right"></div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    function OpenFileInput() {
+      document.querySelector("input[type='file']").click();
+    };
+
+    document.querySelector("input[type='file']").onchange = (event) => {
+      console.log(event.target.files);
+
+      event.target.files.forEach(file => {
+        document.querySelector('.file_list').appendChild(file.name)
+      });
+    }
+  </script>
+</html>
