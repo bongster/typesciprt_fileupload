@@ -48,9 +48,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(fileUpload({
-  debug: true,
-}));
+app.use(fileUpload({}));
 
 const viewsDir = path.join(__dirname, 'views');
 
@@ -69,30 +67,36 @@ const isAuthenticate = (req: Request, res: Response, next: NextFunction) => {
  * Routing
  */
 app
-  .get('/login', (req: Request, res: Response) => {
-    res.sendFile('login.html', { root: viewsDir });
-  })
-  .get('/logout', (req: Request, res: Response) => {
-    req.logOut();
-    res.redirect('/');
-  })
-  .get('/regist', (req: Request, res: Response) => {
-    res.sendFile('regist.html', { root: viewsDir });
-  })
-  .post('/upload', (req: Request, res: Response) => {
-    // TODO: checking two files are comming from client
-    // TODO: checking 1 apk, 1 json postfix are exists
-    console.log('request upload post method', req.files);
-    //res.redirect('/');
-  })
-  .post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-  }));
+.get('/login', (req: Request, res: Response) => {
+  res.sendFile('login.html', { root: viewsDir });
+})
+.get('/logout', (req: Request, res: Response) => {
+  req.logOut();
+  res.redirect('/');
+})
+.get('/regist', (req: Request, res: Response) => {
+  res.sendFile('regist.html', { root: viewsDir });
+})
+.post('/regist', (req: Request, res: Response) => {
+  console.log(req.body);
+  res.redirect('/login');
+})
+.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+}));
 
-app.get('/', isAuthenticate, (req: Request, res: Response) => {
+app.use(isAuthenticate)
+.get('/', isAuthenticate, (req: Request, res: Response) => {
   res.sendFile('main.html', { root: viewsDir });
-});
+})
+.post('/upload', (req: Request, res: Response) => {
+  // TODO: checking two files are comming from client
+  // TODO: checking 1 apk, 1 json postfix are exists
+  console.log('request upload post method', req.files);
+  //res.redirect('/');
+})
+;
 
 
 export default app;
