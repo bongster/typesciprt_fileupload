@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Upload</title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/upload.css" />
-    </head>
-    <body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/upload.css" />
+  </head>
+  <body>
 
-        <div class="login-block">
-            <div class="file-header">Upload</div>
+    <div class="container">
+      <section class="left-container"></section>
+      <section class="main-container text-center">
+        <header class="header" style="justify-content: flex-end;">
+          <button class="logout-btn">Sign out</button>
+        </header>
+        <div class="upload-block">
+          <div class="upload-header">Upload Files</div>
 
-            <div class="file-input">
-                Files:<br/>
-                <input id="file-input" type="file" name="file"/>
-            </div>
-
+          <div class="upload-drag-and-drop">
             <div>
-                <button id="upload-btn">Upload</button>
+              <span>Drag and drop files here or</span>
+              <a id="open_browser"> browse </a>
             </div>
+          </div>
 
-            <div class="default-login-user">
-            </div>
+          <input type="file" class="hidden" />
+
+          <div class="default-upload-warning">
+            Upload only two files in APK and JSON formats, max 110MB 
+            <input type="checkbox" id="remember-checkbox"/>
+            Force update
+          </div>
+
+          <div class="upload-input">
+            <button id="upload-btn">Upload</button>
+          </div>
+
         </div>
-
-    </body>
+      </section>
+      <section class="right-container">
+      </section>
+    </div>    </body>
     <script src="scripts/http.js"></script>
     <script src="scripts/upload.js"></script>
 </html>
