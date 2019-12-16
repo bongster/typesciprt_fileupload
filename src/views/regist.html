@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    This is register page
-    <form method="POST">
-      <fieldset>
-        <legend>Last name</legend>
-        <input type="text" name="last_name" required>
-      </fieldset>
-      <fieldset>
-        <legend>First name</legend>
-        <input type="text" name="first_name" required>
-      </fieldset>
-      <fieldset>
-        <legend>User name</legend>
-        <input type="text" name="username" required>
-      </fieldset>
-      <fieldset>
-        <legend>Password</legend>
-        <input type="password" name="password" placeholder="password" required> </br>
-        <input type="password" name="password_confirm" placeholder="password confirm" required>
-      </fieldset>
-      <input type="submit" value="Submit">
-      Have a registed account? <a href="/login">Sign In</>
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Regist</title>
+        <link rel="stylesheet" type="text/css" href="/stylesheets/regist.css" />
+    </head>
+    <body>
+
+        <div class="login-block">
+            <div class="login-header">Reigst</div>
+
+            <div class="login-input">
+                Username:<br/>
+                <input id="name-input" type="text"/>
+            </div>
+            
+            <div class="login-input">
+                Password:<br/>
+                <input id="pwd-input" type="password"/>
+            </div>
+
+            <div class="login-input">
+                Password Confirm:<br/>
+                <input id="pwd-comfirm-input" type="password"/>
+            </div>
+
+            <div>
+                <button id="regist-btn">Regist</button>
+            </div>
+        </div>
+
+    </body>
+    <script src="scripts/http.js"></script>
+    <script src="scripts/regist.js"></script>
 </html>
