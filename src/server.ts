@@ -1,102 +1,61 @@
-import express, { NextFunction } from 'express';
+import cookieParser from 'cookie-parser';
+import express from 'express';
+import logger from 'morgan';
 import path from 'path';
-
+import BaseRouter from './routes';
 
 import { Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import Session from 'express-session';
+import { jwtCookieProps } from '@shared';
 import fileUpload from 'express-fileupload';
 
 
-import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-
-
-/**
- * Security
- */
-
-// serialize user object
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-
-// deserialize user object
-passport.deserializeUser(function (user, done) {
-  done(null, user);
-});
-
-passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, (email, password, done) => {
-  if (email === 'test@email.com' && password === 'password') {
-    console.log('login are succeed');
-    return done(null, {
-      email,
-      password,
-    });
-  } else {
-    return done(null, false, { message: 'Incorrect account information' })
-  }
-}));
-
-/**
- * Configure
- */
+// Init express
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(Session({ secret: 'secret' }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(fileUpload({}));
 
+
+// Add middleware/settings/routes to express.
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(fileUpload());
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use('/api', BaseRouter);
+
+
+/**
+ * Serve front-end content.
+ */
 const viewsDir = path.join(__dirname, 'views');
+app.set('views', viewsDir);
+const staticDir = path.join(__dirname, 'public');
+app.use(express.static(staticDir));
+
+app.get('/', (req: Request, res: Response) => {
+    res.sendFile('login.html', {root: viewsDir});
+});
+
+app.get('/users', (req: Request, res: Response) => {
+    const jwt = req.signedCookies[jwtCookieProps.key];
+    if (!jwt) {
+        res.redirect('/');
+    } else {
+        res.sendFile('users.html', {root: viewsDir});
+    }
+});
 
 
-/**
- * Middlewares
- */
-const isAuthenticate = (req: Request, res: Response, next: NextFunction) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/login');
-  }
-  next();
-};
+app.get('/upload', (req: Request, res: Response) => {
+    const jwt = req.signedCookies[jwtCookieProps.key];
+    if (!jwt) {
+        res.redirect('/');
+    } else {
+        res.sendFile('upload.html', {root: viewsDir});
+    }
+});
 
-/**
- * Routing
- */
-app
-.get('/login', (req: Request, res: Response) => {
-  res.sendFile('login.html', { root: viewsDir });
+app.get('/regist', (req: Request, res:Response) => {
+    res.sendFile('regist.html', {root: viewsDir});
 })
-.get('/logout', (req: Request, res: Response) => {
-  req.logOut();
-  res.redirect('/');
-})
-.get('/regist', (req: Request, res: Response) => {
-  res.sendFile('regist.html', { root: viewsDir });
-})
-.post('/regist', (req: Request, res: Response) => {
-  console.log(req.body);
-  res.redirect('/login');
-})
-.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login',
-}));
 
-app.use(isAuthenticate)
-.get('/', isAuthenticate, (req: Request, res: Response) => {
-  res.sendFile('main.html', { root: viewsDir });
-})
-.post('/upload', (req: Request, res: Response) => {
-  // TODO: checking two files are comming from client
-  // TODO: checking 1 apk, 1 json postfix are exists
-  console.log('request upload post method', req.files);
-  //res.redirect('/');
-})
-;
-
-
+// Export express instance
 export default app;
