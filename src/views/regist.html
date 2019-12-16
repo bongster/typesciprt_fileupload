@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Regist</title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/regist.css" />
-    </head>
-    <body>
-
-        <div class="login-block">
-            <div class="login-header">Reigst</div>
-
-            <div class="login-input">
-                Username:<br/>
-                <input id="name-input" type="text"/>
-            </div>
-            
-            <div class="login-input">
-                Password:<br/>
-                <input id="pwd-input" type="password"/>
+  <head>
+    <meta charset="UTF-8">
+    <title>Regist</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/regist.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="left-container"></section>
+      <section class="main-container text-center">
+        <div class="regist-block">
+          <div class="regist-header">Regist Account</div>
+          <div class="input-group">
+            <div class="regist-input text-left">
+              <label class="regist-label">First name</label>
+              <input id="first-name-input" type="text"/>
             </div>
 
-            <div class="login-input">
-                Password Confirm:<br/>
-                <input id="pwd-comfirm-input" type="password"/>
+            <div class="regist-input text-left">
+              <label class="regist-label">Last name</label>
+              <input id="last-name-input" type="text"/>
             </div>
+          </div>
+          <div class="regist-input text-left">
+            <label class="regist-label">Username</label>
+            <input id="username-input" type="text"/>
+          </div>
 
-            <div>
-                <button id="regist-btn">Regist</button>
-            </div>
+          <div class="regist-input text-left">
+            <label class="regist-label">Password</label>
+            <input id="pwd-input" type="password"/>
+            <span class="error"></span>
+          </div>
+
+          <div class="regist-input text-left">
+            <label class="regist-label">Confirm Password</label>
+            <input id="pwd-confirm-input" type="password"/>
+            <span class="error-message"> Passwords do not match, please try again </span>
+          </div>
+
+          <div class="regist-input">
+            <button id="regist-btn">Register</button>
+          </div>
+
+          <div class="default-regist-user">
+            Have registered account? <a href="/login"> Sign in </a>
+          </div>
         </div>
-
-    </body>
-    <script src="scripts/http.js"></script>
-    <script src="scripts/regist.js"></script>
+      </section>
+      <section class="right-container"></section>
+    </div>
+  </body>
+  <script src="scripts/http.js"></script>
+  <script src="scripts/regist.js"></script>
 </html>
