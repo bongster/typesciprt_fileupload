@@ -19,11 +19,9 @@
           <div class="upload-drag-and-drop">
             <div>
               <span>Drag and drop files here or</span>
-              <a id="open_browser"> browse </a>
+              <a class="browser">browse</a>
             </div>
           </div>
-
-          <input type="file" class="hidden" />
 
           <div class="default-upload-warning">
             Upload only two files in APK and JSON formats, max 110MB 
@@ -31,8 +29,20 @@
             Force update
           </div>
 
+          <div class="upload-file-list">
+            <div class="upload-file">
+              <span>filename.apk</span>
+              <button>X</button>
+            </div>
+            <div class="upload-file">
+              <span>filename.json</span>
+              <button>X</button>
+            </div>
+          </div>
+          <input type="file" class="hidden" id="file-input"/>
+
           <div class="upload-input">
-            <button id="upload-btn">Upload</button>
+            <button id="upload-btn" disabled>Upload</button>
           </div>
 
         </div>
