@@ -24,14 +24,14 @@ const jwtService = new JwtService();
 router.post('/login', async (req: Request, res: Response) => {
     try {
         // Check email and password present
-        const { email, password } = req.body;
-        if (!(email && password)) {
+        const { name, password } = req.body;
+        if (!(name && password)) {
             return res.status(BAD_REQUEST).json({
                 error: paramMissingError,
             });
         }
         // Fetch user
-        const user = await userDao.getOne(email);
+        const user = await userDao.getOne(name);
         if (!user) {
             return res.status(UNAUTHORIZED).json({
                 error: loginFailedErr,
