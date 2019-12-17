@@ -81,8 +81,6 @@ typings/
 .nuxt
 
 
-public/
-
 # vuepress build output
 .vuepress/dist
 
