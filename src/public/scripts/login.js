@@ -9,11 +9,11 @@ document.addEventListener('click', function (event) {
   }
   event.preventDefault();
   if (event.target.matches('#login-btn')) {
-    var emailInput = document.getElementById('email-input');
+    var nameInput = document.getElementById('name-input');
     var pwdInput = document.getElementById('pwd-input');
     var rememberMeCheckBox = document.getElementById('remember-checkbox');
     var data = {
-      email: emailInput.value,
+      name: nameInput.value,
       password: pwdInput.value,
       remember: rememberMeCheckBox.checked,
     };
@@ -25,3 +25,17 @@ document.addEventListener('click', function (event) {
       })
   }
 }, false)
+
+function validation() {
+  var nameInput = document.getElementById('name-input');
+  var pwdInput = document.getElementById('pwd-input');
+  return !!(nameInput.value && pwdInput.value);
+}
+
+document.addEventListener('change', function (e) {
+  document.getElementById('login-btn').disabled = !validation();
+})
+
+document.addEventListener('blur', function (e) {
+  document.getElementById('login-btn').disabled = !validation();
+})

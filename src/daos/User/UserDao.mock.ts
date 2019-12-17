@@ -7,11 +7,11 @@ import { IUserDao } from './UserDao';
 export class UserDao extends MockDaoMock implements IUserDao {
 
 
-    public async getOne(email: string): Promise<IUser | null> {
+    public async getOne(name: string): Promise<IUser | null> {
         try {
             const db = await super.openDb();
             for (const user of db.users) {
-                if (user.email === email) {
+                if (user.name === name) {
                     return user;
                 }
             }
