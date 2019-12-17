@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
-    </head>
-    <body>
-
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="left-container"></section>
+      <section class="main-container text-center">
         <div class="login-block">
-            <div class="login-header">Login</div>
+          <div class="login-header">Sign in</div>
 
-            <div class="login-input">
-                Username:<br/>
-                <input id="email-input" type="text"/>
-            </div>
-            
-            <div class="login-input">
-                Password:<br/>
-                <input id="pwd-input" type="password"/>
-            </div>
+          <div class="login-input text-left">
+            <label class="login-label">Username</label>
+            <input id="email-input" type="text" placeholder="Enter username"/>
+          </div>
 
-            <div>
-                <button id="login-btn">Login</button>
-            </div>
+          <div class="login-input text-left">
+            <label class="login-label">Password</label>
+            <input id="pwd-input" type="password" placeholder="Enter password"/>
+          </div>
 
-            <div class="default-login-user">
-                // Default admin user (Email: "sean.maxwell@gmail.com", Password: "Password@1")
-            </div>
+          <div class="login-input text-left">
+            <input type="checkbox" id="remember-checkbox"/>
+            Remember me
+          </div>
+
+          <div class="login-input">
+            <button id="login-btn" disabled>Sign in</button>
+          </div>
+
+          <div class="default-login-user">
+            Do not have an account? <a href="/regist"> Register </a>
+          </div>
         </div>
-
-    </body>
-    <script src="scripts/http.js"></script>
-    <script src="scripts/login.js"></script>
+      </section>
+      <section class="right-container"></section>
+    </div>
+  </body>
+  <script src="scripts/http.js"></script>
+  <script src="scripts/login.js"></script>
 </html>
