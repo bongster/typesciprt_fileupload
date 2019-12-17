@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/upload.css" />
   </head>
   <body>
-
     <div class="container">
       <section class="left-container"></section>
       <section class="main-container text-center">
@@ -39,9 +38,9 @@
           </div>
 
           <div class="default-upload-warning">
-            Upload only two files in APK and JSON formats, max 110MB 
-            <input type="checkbox" id="remember-checkbox"/>
-            Force update
+            <span class="text-left">Upload only two files in APK and JSON formats, max 110MB </span>
+            <span class="text-right"><input type="checkbox" id="remember-checkbox"/>
+              Force update</span>
           </div>
 
           <div class="upload-file-list">
@@ -54,7 +53,7 @@
               <button class="delete_btn"/>
             </div>
           </div>
-          <input type="file" class="hidden" id="file-input"/>
+          <input type="file" class="hidden" id="file-input" multiple />
 
           <div class="upload-input">
             <button id="upload-btn" disabled>Upload</button>
@@ -64,7 +63,8 @@
       </section>
       <section class="right-container">
       </section>
-    </div>    </body>
-    <script src="scripts/http.js"></script>
-    <script src="scripts/upload.js"></script>
+    </div>
+  </body>
+  <script src="scripts/http.js"></script>
+  <script src="scripts/upload.js"></script>
 </html>
