@@ -14,6 +14,18 @@
           <button class="logout-btn">Sign out</button>
         </header>
         <div class="upload-block">
+          <div class="alert success-alert">
+            <i class="alert-img success-img"></i>
+            Your file was successfully uploaded!
+          </div>
+          <div class="alert warning-alert">
+            <i class="alert-img warning-img"></i>
+            [filename.json] exceeded maximum upload limit!
+          </div>
+          <div class="alert danger-alert">
+            <i class="alert-img danger-img"></i>
+            Something went wrong, please try again!
+          </div>
           <div class="upload-header">Upload Files</div>
 
           <div class="upload-drag-and-drop">
@@ -34,12 +46,12 @@
 
           <div class="upload-file-list">
             <div class="upload-file">
-              <span>filename.apk</span>
-              <button>X</button>
+              <span class="upload-file-name">filename.apk</span>
+              <button class="delete_btn"/>
             </div>
             <div class="upload-file">
-              <span>filename.json</span>
-              <button>X</button>
+              <span class="upload-file-name">filename.json</span>
+              <button class="delete_btn"/>
             </div>
           </div>
           <input type="file" class="hidden" id="file-input"/>
