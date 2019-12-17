@@ -53,8 +53,8 @@ app.get('/upload', (req: Request, res: Response) => {
     }
 });
 
-app.get('/regist', (req: Request, res:Response) => {
-    res.sendFile('regist.html', {root: viewsDir});
+app.get('/register', (req: Request, res:Response) => {
+    res.sendFile('register.html', {root: viewsDir});
 })
 
 // Export express instance
