@@ -1,7 +1,32 @@
 
 /**
+ * Utils function
+ */
+
+//const MAX_JSON_FILE_SIZE = 1000000;
+const MAX_JSON_FILE_SIZE = 2000;
+
+function AlertTemplate (alertType, message) {
+  return `
+  <div class="alert ${alertType}-alert">
+    <i class="alert-img ${alertType}-img"></i>
+    ${message}
+  </div>
+  `
+}
+function showAlert(Ele, alertType, message) {
+  Ele.innerHTML = AlertTemplate(alertType, message);
+}
+
+function clearAlert(Ele) {
+  Ele.innerHTML = '';
+}
+
+/**
  * Click Event
  */
+
+const alertDiv = document.getElementById('alert');
 
 let SelectedFiles = [];
 document.addEventListener('click', function (event) {
@@ -28,11 +53,12 @@ document.addEventListener('click', function (event) {
     Validate(formData).then(validatedData => {
       Http.Upload('/api/upload', validatedData)
         .then(() => {
-          window.location.href = '/upload';
+          showAlert(alertDiv, 'success', 'Your file was successfully uploaded!')
+          //window.location.href = '/upload';
         }, err => {
-          console.log(err);
+          showAlert(alertDiv, 'danger', 'Something went wrong, please try again!');
         })
-    }, err => alert(err.message));
+    });
   } else if (event.target.matches('.logout-btn')) {
     window.location.href = '/api/auth/logout';
   } else if (event.target.matches('.browser')) {
@@ -77,7 +103,26 @@ function removeFile(i) {
 }
 
 function disableUploadBtn(files) {
-  document.getElementById('upload-btn').disabled = !(files.length === 2);
+  clearAlert(alertDiv);
+  if (files.length !== 2) {
+    showAlert(alertDiv, 'warning', 'You have to select two files apk, json');
+    document.getElementById('upload-btn').disabled = true;
+    return
+  }
+
+  const postfix = SelectedFiles.map(file => file.name.split(".").pop());
+
+  if (postfix.indexOf('json') !== -1 && postfix.indexOf('apk') !== -1) {
+    const jsonFile = SelectedFiles.filter(file => file.name.split(".").pop() === 'json')[0];
+    if (jsonFile.size > MAX_JSON_FILE_SIZE) {
+      showAlert(alertDiv, 'warning', '[filename.json] exceeded maximum upload limit!');
+      return;
+    }
+    document.getElementById('upload-btn').disabled = false;
+  } else {
+    showAlert(alertDiv, 'warning', 'Please checking file postfix type, only allow apk, json');
+    document.getElementById('upload-btn').disabled = true;
+  }
 }
 
 function showSelectedFiles(files = SelectedFiles) {

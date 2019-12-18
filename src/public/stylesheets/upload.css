@@ -36,12 +36,13 @@ header {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .browser {
   text-decoration: underline;
   color: #359BE0;
+  cursor: pointer;
 }
 
 .alert {
