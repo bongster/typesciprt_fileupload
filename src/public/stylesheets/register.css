@@ -57,6 +57,15 @@ body .container {
   border: 1px solid #C32026;
 }
 
+.danger {
+  color: #DC031F !important;
+}
+
+.danger input {
+  color: #DC031F !important;
+  border: 1px solid #C32026;
+}
+
 body .register-block {
   display: flex;
   vertical-align: top;

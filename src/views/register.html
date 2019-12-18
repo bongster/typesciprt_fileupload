@@ -15,29 +15,31 @@
             <div class="register-input text-left">
               <label class="register-label">Last name</label>
               <input id="last-name-input" type="text" placeholder="Surname" />
+              <span class="error-message" id="last-name-input-error-message"></span>
             </div>
 
             <div class="register-input text-left">
               <label class="register-label">First name</label>
               <input id="first-name-input" type="text" placeholder="Given name" />
+              <span class="error-message" id="first-name-input-error-message"></span>
             </div>
           </div>
           <div class="register-input text-left">
             <label class="register-label">Username</label>
             <input id="user-name-input" type="text" placeholder="Enter username"/>
+            <span class="error-message" id="user-name-input-error-message"></span>
           </div>
 
           <div class="register-input text-left">
             <label class="register-label">Password</label>
             <input id="pwd-input" type="password" placeholder="Enter password"/>
-            <span class="input-hint">Please enter 6-20 alpha-numeric or symbol characters</span>
-            <span class="error-message"></span>
+            <span class="error-message" id="pwd-input-error-message"></span>
           </div>
 
           <div class="register-input text-left">
             <label class="register-label">Confirm Password</label>
             <input id="pwd-confirm-input" type="password" placeholder="Re-enter password"/>
-            <span class="error-message"> Passwords do not match, please try again </span>
+            <span class="pwd-confirm-input error-message" id="pwd-confirm-input-error-message"></span>
           </div>
 
           <div class="register-input">
