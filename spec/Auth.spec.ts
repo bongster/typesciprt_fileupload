@@ -35,13 +35,13 @@ describe('UserRouter', () => {
             was successful.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'Password@1',
             };
             const role = UserRoles.Standard;
             const pwdHash = hashPwd(creds.password);
-            const loginUser = new User('john smith', creds.email, role, pwdHash);
-            spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(loginUser));
+            const loginUser = new User(creds.name, '', '', role, pwdHash);
+            UserDao.prototype.getOne = jest.fn().mockResolvedValue(loginUser);
             // Call API
             callApi(creds)
                 .end((err: Error, res: any) => {
@@ -57,10 +57,10 @@ describe('UserRouter', () => {
             "${loginFailedErr}" if the email was not found.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'Password@1',
             };
-            spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(null));
+            UserDao.prototype.getOne = jest.fn().mockResolvedValue(null);
             // Call API
             callApi(creds)
                 .end((err: Error, res: any) => {
@@ -76,13 +76,13 @@ describe('UserRouter', () => {
             "${loginFailedErr}" if the password failed.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'someBadPassword',
             };
             const role = UserRoles.Standard;
             const pwdHash = hashPwd('Password@1');
-            const loginUser = new User('john smith', creds.email, role, pwdHash);
-            spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(loginUser));
+            const loginUser = new User(creds.name, '', '', role, pwdHash);
+            UserDao.prototype.getOne = jest.fn().mockResolvedValue(loginUser);
             // Call API
             callApi(creds)
                 .end((err: Error, res: any) => {
@@ -98,10 +98,10 @@ describe('UserRouter', () => {
             for all other bad responses.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'someBadPassword',
             };
-            spyOn(UserDao.prototype, 'getOne').and.throwError('Database query failed.');
+            UserDao.prototype.getOne = jest.fn().mockRejectedValue(new Error('Database query failed.'));
             // Call API
             callApi(creds)
                 .end((err: Error, res: any) => {
@@ -132,5 +132,3 @@ describe('UserRouter', () => {
         return bcrypt.hashSync(pwd, pwdSaltRounds);
     }
 });
-
-

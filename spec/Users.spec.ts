@@ -41,11 +41,11 @@ describe('UserRouter', () => {
             request was successful.`, (done) => {
             // Setup Dummy Data
             const users = [
-                new User('Sean Maxwell', 'sean.maxwell@gmail.com'),
-                new User('John Smith', 'john.smith@gmail.com'),
-                new User('Gordan Freeman', 'gordan.freeman@gmail.com'),
+                new User('Sean Maxwell'),
+                new User('John Smith'),
+                new User('Gordan Freeman'),
             ];
-            spyOn(UserDao.prototype, 'getAll').and.returnValue(Promise.resolve(users));
+            UserDao.prototype.getAll = jest.fn().mockResolvedValue(users);
             // Call API
             callApi()
                 .end((err: Error, res: Response) => {
@@ -66,7 +66,7 @@ describe('UserRouter', () => {
             "${BAD_REQUEST}" if the request was unsuccessful.`, (done) => {
             // Setup Dummy Data
             const errMsg = 'Could not fetch users.';
-            spyOn(UserDao.prototype, 'getAll').and.throwError(errMsg);
+            UserDao.prototype.getAll = jest.fn().mockRejectedValue(new Error(errMsg));
             // Call API
             callApi()
                 .end((err: Error, res: Response) => {
@@ -91,7 +91,7 @@ describe('UserRouter', () => {
 
 
         it(`should return a status code of "${CREATED}" if the request was successful.`, (done) => {
-            spyOn(UserDao.prototype, 'add').and.returnValue(Promise.resolve());
+            UserDao.prototype.add = jest.fn().mockResolvedValue();
             callApi(userData)
                 .end((err: Error, res: Response) => {
                     pErr(err);
@@ -118,7 +118,7 @@ describe('UserRouter', () => {
             if the request was unsuccessful.`, (done) => {
             // Setup Dummy Response
             const errMsg = 'Could not add user.';
-            spyOn(UserDao.prototype, 'add').and.throwError(errMsg);
+            UserDao.prototype.add = jest.fn().mockRejectedValue(new Error(errMsg));
             // Call API
             callApi(userData)
                 .end((err: Error, res: Response) => {
@@ -143,7 +143,7 @@ describe('UserRouter', () => {
 
 
         it(`should return a status code of "${OK}" if the request was successful.`, (done) => {
-            spyOn(UserDao.prototype, 'update').and.returnValue(Promise.resolve());
+            UserDao.prototype.update = jest.fn().mockResolvedValue();
             callApi(userData)
                 .end((err: Error, res: Response) => {
                     pErr(err);
@@ -170,7 +170,7 @@ describe('UserRouter', () => {
             if the request was unsuccessful.`, (done) => {
             // Setup Dummy Data
             const updateErrMsg = 'Could not update user.';
-            spyOn(UserDao.prototype, 'update').and.throwError(updateErrMsg);
+            UserDao.prototype.update = jest.fn().mockRejectedValue(new Error(updateErrMsg));
             // Call API
             callApi(userData)
                 .end((err: Error, res: Response) => {
@@ -192,7 +192,7 @@ describe('UserRouter', () => {
 
 
         it(`should return a status code of "${OK}" if the request was successful.`, (done) => {
-            spyOn(UserDao.prototype, 'delete').and.returnValue(Promise.resolve());
+            UserDao.prototype.delete = jest.fn().mockResolvedValue();
             callApi(5)
                 .end((err: Error, res: Response) => {
                     pErr(err);
@@ -207,7 +207,7 @@ describe('UserRouter', () => {
             if the request was unsuccessful.`, (done) => {
             // Setup Dummy Response
             const deleteErrMsg = 'Could not delete user.';
-            spyOn(UserDao.prototype, 'delete').and.throwError(deleteErrMsg);
+            UserDao.prototype.delete = jest.fn().mockRejectedValue(new Error(deleteErrMsg));
             // Call API
             callApi(1)
                 .end((err: Error, res: Response) => {
