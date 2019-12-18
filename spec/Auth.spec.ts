@@ -35,12 +35,12 @@ describe('UserRouter', () => {
             was successful.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'Password@1',
             };
             const role = UserRoles.Standard;
             const pwdHash = hashPwd(creds.password);
-            const loginUser = new User('john smith', creds.email, role, pwdHash);
+            const loginUser = new User(creds.name, '', '', role, pwdHash);
             spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(loginUser));
             // Call API
             callApi(creds)
@@ -57,7 +57,7 @@ describe('UserRouter', () => {
             "${loginFailedErr}" if the email was not found.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'Password@1',
             };
             spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(null));
@@ -76,12 +76,12 @@ describe('UserRouter', () => {
             "${loginFailedErr}" if the password failed.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'someBadPassword',
             };
             const role = UserRoles.Standard;
             const pwdHash = hashPwd('Password@1');
-            const loginUser = new User('john smith', creds.email, role, pwdHash);
+            const loginUser = new User(creds.name, '', '', role, pwdHash);
             spyOn(UserDao.prototype, 'getOne').and.returnValue(Promise.resolve(loginUser));
             // Call API
             callApi(creds)
@@ -98,7 +98,7 @@ describe('UserRouter', () => {
             for all other bad responses.`, (done) => {
             // Setup Dummy Data
             const creds = {
-                email: 'jsmith@gmail.com',
+                name: 'jsmith@gmail.com',
                 password: 'someBadPassword',
             };
             spyOn(UserDao.prototype, 'getOne').and.throwError('Database query failed.');
@@ -132,5 +132,3 @@ describe('UserRouter', () => {
         return bcrypt.hashSync(pwd, pwdSaltRounds);
     }
 });
-
-

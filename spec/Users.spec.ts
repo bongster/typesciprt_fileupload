@@ -41,9 +41,9 @@ describe('UserRouter', () => {
             request was successful.`, (done) => {
             // Setup Dummy Data
             const users = [
-                new User('Sean Maxwell', 'sean.maxwell@gmail.com'),
-                new User('John Smith', 'john.smith@gmail.com'),
-                new User('Gordan Freeman', 'gordan.freeman@gmail.com'),
+                new User('Sean Maxwell'),
+                new User('John Smith'),
+                new User('Gordan Freeman'),
             ];
             spyOn(UserDao.prototype, 'getAll').and.returnValue(Promise.resolve(users));
             // Call API

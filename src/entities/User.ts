@@ -29,12 +29,11 @@ export class User implements IUser {
 
 
   constructor(
-    name: string,
     nameOrUser?: string | IUser,
     first_name?: string,
     last_name?: string,
-    pwdHash?: string,
     role?: TUserRoles,
+    pwdHash?: string,
   ) {
     if (typeof nameOrUser === 'string' || typeof nameOrUser === 'undefined') {
       this.name = nameOrUser || '';
