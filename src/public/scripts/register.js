@@ -38,6 +38,10 @@ function showError(errors) {
 function resetError() {
   Object.keys(DataIdMap).map(key => {
     document.getElementById(DataIdMap[key]).parentElement.classList.remove('danger');
+    errMsgEL = document.getElementById(`${DataIdMap[key]}-error-message`);
+    if (errMsgEL) {
+      errMsgEL.innerText = '';
+    }
   });
 }
 
