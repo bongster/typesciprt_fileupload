@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/utils.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/register.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="left-container"></section>
+      <section class="main-container text-center">
+        <div class="register-block">
+          <div id="alert"></div>
+          <div class="register-header">Register Account</div>
+          <div class="input-group">
+            <div class="register-input text-left">
+              <label class="register-label">Last name</label>
+              <input id="last-name-input" type="text" placeholder="Surname" />
+              <span class="error-message" id="last-name-input-error-message"></span>
+            </div>
+
+            <div class="register-input text-left">
+              <label class="register-label">First name</label>
+              <input id="first-name-input" type="text" placeholder="Given name" />
+              <span class="error-message" id="first-name-input-error-message"></span>
+            </div>
+          </div>
+          <div class="register-input text-left">
+            <label class="register-label">Username</label>
+            <input id="user-name-input" type="text" placeholder="Enter username"/>
+            <span class="error-message" id="user-name-input-error-message"></span>
+          </div>
+
+          <div class="register-input text-left">
+            <label class="register-label">Password</label>
+            <input id="pwd-input" type="password" placeholder="Enter password"/>
+            <span class="error-message" id="pwd-input-error-message"></span>
+          </div>
+
+          <div class="register-input text-left">
+            <label class="register-label">Confirm Password</label>
+            <input id="pwd-confirm-input" type="password" placeholder="Re-enter password"/>
+            <span class="pwd-confirm-input error-message" id="pwd-confirm-input-error-message"></span>
+          </div>
+
+          <div class="register-input">
+            <button id="register-btn" disabled>Register</button>
+          </div>
+
+          <div class="default-register-user">
+            Have registered account? <a href="/login"> Sign in </a>
+          </div>
+        </div>
+      </section>
+      <section class="right-container"></section>
+    </div>
+  </body>
+  <script src="scripts/http.js"></script>
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/register.js"></script>
+</html>

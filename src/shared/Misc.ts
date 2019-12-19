@@ -13,6 +13,7 @@ const jwtService = new JwtService();
 // Strings
 export const paramMissingError = 'One or more of the required parameters was missing.';
 export const loginFailedErr = 'Login failed';
+export const duplicatedRecordErr = 'Already has a record';
 
 // Numbers
 export const pwdSaltRounds = 12;

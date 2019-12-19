@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/utils.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
   </head>
   <body>
@@ -14,7 +15,7 @@
 
           <div class="login-input text-left">
             <label class="login-label">Username</label>
-            <input id="email-input" type="text" placeholder="Enter username"/>
+            <input id="name-input" type="text" placeholder="Enter username"/>
           </div>
 
           <div class="login-input text-left">
@@ -23,7 +24,7 @@
           </div>
 
           <div class="login-input text-left">
-            <input type="checkbox" id="remember-checkbox"/>
+            <button class="checkbox" id="remember-checkbox"></button>
             Remember me
           </div>
 
@@ -32,7 +33,7 @@
           </div>
 
           <div class="default-login-user">
-            Do not have an account? <a href="/regist"> Register </a>
+            Do not have an account? <a href="/register"> Register </a>
           </div>
         </div>
       </section>
@@ -40,5 +41,6 @@
     </div>
   </body>
   <script src="scripts/http.js"></script>
+  <script src="scripts/utils.js"></script>
   <script src="scripts/login.js"></script>
 </html>
