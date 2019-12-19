@@ -21,7 +21,11 @@ document.addEventListener('click', function (event) {
       .then(() => {
         window.location.href = '/users';
       }, err => {
-        alert(err, err.message);
+        return err.json().then(({ error }) => {
+          Utils.showAlert(document.getElementById('alert'), 'danger', error);
+        });
+      }).catch(err => {
+          Utils.showAlert(document.getElementById('alert'), 'danger', err.message);
       })
   }
 }, false)
