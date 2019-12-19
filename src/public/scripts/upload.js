@@ -22,6 +22,27 @@ function clearAlert(Ele) {
   Ele.innerHTML = '';
 }
 
+
+/*
+  *
+  * checkbox click event
+  *
+  * */
+document.addEventListener('click', function (event) {
+  const el = event.target;
+  if (el.className.indexOf('checkbox') === -1) {
+    return
+  }
+
+  if (el.className.indexOf('checked') === -1) {
+    el.classList.add('checked');
+    el.value = true;
+  } else {
+    el.classList.remove('checked');
+    el.value = false;
+  }
+})
+
 /**
  * Click Event
  */

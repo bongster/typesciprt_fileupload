@@ -94,6 +94,19 @@ header {
   background-size: contain;
 }
 
+.checkbox {
+  background: url(/images/checkbox.png);
+  background-size: cover;
+  padding-bottom: 2pt;
+  width: 12pt;
+  height: 12pt;
+  border: none;
+}
+
+.checkbox.checked {
+  background: url(/images/checkbox-s.png);
+  background-size: cover;
+}
 
 body .upload-block {
   display: inline-block;
