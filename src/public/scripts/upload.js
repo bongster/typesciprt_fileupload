@@ -77,6 +77,10 @@ document.addEventListener('click', function (event) {
           showAlert(alertDiv, 'success', 'Your file was successfully uploaded!')
           //window.location.href = '/upload';
         }, err => {
+          err.json().then(data => {
+            Utils.showAlert(document.getElementById('alert'), 'danger', data.error);
+          })
+        }).catch(err => {
           showAlert(alertDiv, 'danger', 'Something went wrong, please try again!');
         })
     });

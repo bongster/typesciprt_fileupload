@@ -17,21 +17,46 @@ var Http = (function () {
     // Set Http methods
     return {
         Get: function (path) {
-            return fetch(path, getOptions('GET'))
+            return fetch(path, getOptions('GET')).then(res => {
+                if(!res.ok) {
+                    return Promise.reject(res);
+                }
+                return Promise.resolve(res);
+            });
         },
         Post: function (path, data) {
-            return fetch(path, getOptions('POST', data));
+            return fetch(path, getOptions('POST', data)).then(res => {
+                if(!res.ok) {
+                    return Promise.reject(res);
+                }
+                return Promise.resolve(res);
+            });
         },
         Put: function (path, data) {
-            return fetch(path, getOptions('PUT', data));
+            return fetch(path, getOptions('PUT', data)).then(res => {
+                if(!res.ok) {
+                    return Promise.reject(res);
+                }
+                return Promise.resolve(res);
+            });
         },
         Delete: function (path) {
-            return fetch(path, getOptions('DELETE'));
+            return fetch(path, getOptions('DELETE')).then(res => {
+                if(!res.ok) {
+                    return Promise.reject(res);
+                }
+                return Promise.resolve(res);
+            });
         },
         Upload: function (path, body) {
             return fetch(path, {
                 method: 'POST',
                 body,
+            }).then(res => {
+                if(!res.ok) {
+                    return Promise.reject(res);
+                }
+                return Promise.resolve(res);
             });
         }
     };

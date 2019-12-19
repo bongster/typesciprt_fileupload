@@ -73,6 +73,13 @@ function registerUser() {
     })
       .then(() => {
         window.location.href = '/';
+      },
+      err => {
+        err.json().then(data => {
+          Utils.showAlert(document.getElementById('alert'), 'danger', data.error);
+        })
+      }).catch(err => {
+        Utils.showAlert(document.getElementById('alert'), 'danger', 'Something went wrong, please try again!');
       })
   }, errors => {
     showError(errors);

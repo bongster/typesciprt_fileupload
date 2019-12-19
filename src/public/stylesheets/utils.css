@@ -1,0 +1,89 @@
+body {
+  font: 14px "Noto Sans SC", sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.browser {
+  text-decoration: underline;
+  color: #359BE0;
+  cursor: pointer;
+}
+
+.alert {
+  border-radius: 4pt;
+  height: 3.0em;
+  text-align: left;
+  font-size: 1.0em;
+  display: flex;
+  align-items: center;
+}
+
+.success-alert {
+  background-color: #D8F9E8;
+  color: #24A65B;
+}
+
+.warning-alert {
+  background-color: #FDF1DD;
+  color: #DF9112;
+}
+
+
+.danger-alert {
+  background-color: #FCE7E9;
+  color: #C32026;
+}
+
+.alert-img {
+  margin: 0 5pt 0 8pt;
+  width: 17pt;
+  height: 17pt;
+}
+
+.success-img {
+  background: url(/images/success.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.warning-img {
+  background: url(/images/warning.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.danger-img {
+  background: url(/images/error.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.checkbox {
+  background: url(/images/checkbox.png);
+  background-size: cover;
+  padding-bottom: 2pt;
+  width: 12pt;
+  height: 12pt;
+  border: none;
+}
+
+.checkbox.checked {
+  background: url(/images/checkbox-s.png);
+  background-size: cover;
+}
+

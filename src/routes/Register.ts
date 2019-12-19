@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { BAD_REQUEST, CREATED } from 'http-status-codes';
 import { UserDao } from '@daos';
-import { paramMissingError, logger, adminMW } from '@shared';
+import { paramMissingError, logger, duplicatedRecordErr } from '@shared';
 import { UserRoles } from '@entities';
 import bcrypt from 'bcrypt';
 
@@ -23,7 +23,12 @@ router.post('/', async (req: Request, res: Response) => {
                 error: paramMissingError,
             });
         }
-
+        const isExists = !!(await userDao.getOne(user.name));
+        if (isExists) {
+            return res.status(BAD_REQUEST).json({
+                error: duplicatedRecordErr,
+            });
+        }
         const {password, password_confirm, ...re_user } = user;
         // Add new user
         re_user.role = UserRoles.Admin;
