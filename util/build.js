@@ -9,7 +9,12 @@ try {
     fs.copySync('./src/public', './dist/public');
     fs.copySync('./src/views', './dist/views');
     // Transpile the typescript files
-    childProcess.exec('tsc --build tsconfig.prod.json');
+    childProcess.exec('./node_modules/.bin/tsc --build tsconfig.prod.json', (err) => {
+        if (err) {
+            console.log(`exec error: ${err}`);
+            return;
+        }
+    });
 } catch (err) {
     console.log(err);
 }
