@@ -114,29 +114,19 @@ After finish that job, you can access http://localhost:3000
 |- nodemon.json
 ```
 
-## Documentation
+### Documentation
 
-API
+### Static HTML Documentation
 
-GET: users/all
+| Name                    | URL            | Description |
+|-------------------------|----------------|-------------|
+| Main page               | /              | Main pages  |
+| Register page           | /register      | Register user pages |
+| Upload page             | /upload        | Upload apk, json file to server |
 
-POST: users/add
+### API Documentation
 
-PUT: users/update
-
-DELETE: users/delete/:id
-
-POST: auth/login
-GET: auth/logout
-
-GET: upload
-POST: upload
-
-
-GET: register
-POST: register
-    
-
+*TODO*
 
 ## Built With
 
@@ -162,10 +152,10 @@ TODO
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
 ### TODO
 
-- [] configure dockerizing
+- [x] configure dockerizing
+- [x] configure API documentation
+- [ ] add PULL_REQUEST_TEMPLATE.md file
+- [ ] change pure javascript to react
