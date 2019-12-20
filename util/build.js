@@ -11,7 +11,7 @@ try {
     // Transpile the typescript files
     childProcess.exec('./node_modules/.bin/tsc --build tsconfig.prod.json', (err) => {
         if (err) {
-            console.log(`exec error: ${error}`);
+            console.log(`exec error: ${err}`);
             return;
         }
     });

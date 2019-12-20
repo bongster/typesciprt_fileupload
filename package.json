@@ -2,6 +2,7 @@
   "name": "express-gen-ts",
   "version": "0.0.0",
   "scripts": {
+    "postinstall": "npm run build",
     "build": "node ./util/build.js",
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
