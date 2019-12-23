@@ -7,6 +7,7 @@
     "lint": "tslint --project \"tsconfig.json\"",
     "start": "node -r module-alias/register ./dist",
     "start:dev": "nodemon --config nodemon.json",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "jest"
   },
   "_moduleAliases": {
@@ -26,7 +27,10 @@
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
     "randomstring": "^1.1.5",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.21",
     "winston": "^3.2.1"
   },
   "devDependencies": {
