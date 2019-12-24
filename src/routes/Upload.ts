@@ -24,7 +24,7 @@ router.post('/', adminMW, async (req: Request, res: Response) => {
             return res.status(BAD_REQUEST).json({
                 error: paramMissingError,
             });
-        };
+        }
         return res.status(CREATED).end();
     } catch (err) {
         return res.status(BAD_REQUEST).json({
