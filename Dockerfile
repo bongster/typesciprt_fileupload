@@ -4,7 +4,9 @@ WORKDIR /server
 
 COPY . /server
 
-RUN npm install
+RUN npm install --no-optional
+
+ENV PATH /server/node_modules/.bin:$PATH
 
 EXPOSE 3000
 CMD [ 'npm', 'start' ]

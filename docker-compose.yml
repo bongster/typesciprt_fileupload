@@ -6,8 +6,8 @@ services:
       - 3000:3000
     volumes:
       - ./:/server
-      - web-node_modules:/server/node_modules
-    command: ['npm', 'run', 'start:dev']
+      - /server/node_modules
+    command: [ 'npm', 'run', 'start:dev' ]
 
 volumes:
   web-node_modules:
