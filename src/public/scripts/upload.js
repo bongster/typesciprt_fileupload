@@ -3,9 +3,6 @@
  * Utils function
  */
 
-//const MAX_JSON_FILE_SIZE = 1000000;
-const MAX_JSON_FILE_SIZE = 2000;
-
 function AlertTemplate (alertType, message) {
   return `
   <div class="alert ${alertType}-alert">
@@ -139,7 +136,7 @@ function disableUploadBtn(files) {
 
   if (postfix.indexOf('json') !== -1 && postfix.indexOf('apk') !== -1) {
     const jsonFile = SelectedFiles.filter(file => file.name.split(".").pop() === 'json')[0];
-    if (jsonFile.size > MAX_JSON_FILE_SIZE) {
+    if (jsonFile.size > Utils.MAX_JSON_FILE_SIZE) {
       showAlert(alertDiv, 'warning', '[filename.json] exceeded maximum upload limit!');
       return;
     }

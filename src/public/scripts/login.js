@@ -19,7 +19,7 @@ document.addEventListener('click', function (event) {
     };
     Http.Post('/api/auth/login', data)
       .then(() => {
-        window.location.href = '/users';
+        window.location.href = '/upload';
       }, err => {
         return err.json().then(({ error }) => {
           Utils.showAlert(document.getElementById('alert'), 'danger', error);

@@ -1,5 +1,5 @@
 const Utils = {};
-const MAX_JSON_FILE_SIZE = 2000;
+Utils.MAX_JSON_FILE_SIZE = 1000000;
 
 Utils.AlertTemplate = function (alertType, message) {
   return `
